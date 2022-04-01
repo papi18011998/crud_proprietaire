@@ -1,5 +1,4 @@
 <?php
-
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity 
@@ -60,7 +59,7 @@ class Proprietaire
      */
     private $code_proprietaire;
     /**
-     * @ORM\ManyToOne(targetEntity="TypePropritetaire", inversedBy="proprietaires")
+     * @ORM\ManyToOne(targetEntity="TypeProprietaire", inversedBy="proprietaires")
      * @ORM\JoinColumn(name="type_proprietaire_id", referencedColumnName="id")
      */
     private $type_proprietaire;

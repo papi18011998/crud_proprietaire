@@ -1,12 +1,11 @@
 <?php
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity 
  * @ORM\Table(name="type_proprietaires")
  */ 
-class TypePropritetaire
+class TypeProprietaire
 {
     /**
      * @ORM\Id 
