@@ -26,6 +26,12 @@ class ProprietaireDb extends Model
                     ->getResult();
         return $found[0];
     }
+    public function findTypeProprietaires()
+    {
+        return $this->entityManager
+                    ->createQuery('SELECT p FROM TypeProprietaire p')
+                    ->getResult();
+    }
     public function find($id)
     {
         $found = $this->entityManager
@@ -43,6 +49,11 @@ class ProprietaireDb extends Model
     public function delete($proprietaire)
     {
         $this->entityManager->remove($proprietaire);
+        $this->entityManager->flush();
+    }
+    public function update($proprietaire)
+    {
+        $this->entityManager->merge($proprietaire);
         $this->entityManager->flush();
     }
 }

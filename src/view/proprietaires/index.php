@@ -28,7 +28,7 @@
         <td><?=$value->getTelephone() ?></td>
         <?php echo $value->getDateNaissance(); ?>
         <td>
-            <a href=""><i class="bi bi-pen-fill text-success" title="Modifier"></i></a>
+            <a href="Proprietaires/edit/<?=$value->getId() ?>"><i class="bi bi-pen-fill text-success" title="Modifier"></i></a>
             <a href="Proprietaires/delete/<?=$value->getId() ?>"><i class="bi bi-x-circle text-danger" title="Supprimer"></i></a>
         </td>
       </tr>
@@ -58,8 +58,8 @@
         <td><?=$value->getAdresse() ?></td>
         <td><?=$value->getTelephone() ?></td>
         <td>
-            <i class="bi bi-pen-fill text-success" title="Modifier"></i>
-            <i class="bi bi-x-circle text-danger" title="Supprimer"></i>
+            <a href="Proprietaires/edit/<?=$value->getId() ?>"><i class="bi bi-pen-fill text-success" title="Modifier"></i></a>
+            <a href="Proprietaires/delete/<?=$value->getId() ?>"><i class="bi bi-x-circle text-danger" title="Supprimer"></i></a>
         </td>
       </tr>
     <?php }} ?>
