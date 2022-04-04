@@ -1,5 +1,4 @@
 <?php
-namespace src\entities;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity 
@@ -48,7 +47,7 @@ class Proprietaire
      */
     private $civilite;
     /**
-     * @ORM\Column(type="string",name="photo")
+     * @ORM\Column(type="string",name="photo",nullable=true)
      */
     private $photo;
     /**
@@ -176,7 +175,7 @@ class Proprietaire
      */ 
     public function getDateNaissance()
     {
-        return $this->dateNaissance;
+        return $this->date_naissance;
     }
 
     /**
@@ -307,6 +306,26 @@ class Proprietaire
     public function setType_proprietaire($type_proprietaire)
     {
         $this->type_proprietaire = $type_proprietaire;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of lieu
+     */ 
+    public function getLieu()
+    {
+        return $this->lieu;
+    }
+
+    /**
+     * Set the value of lieu
+     *
+     * @return  self
+     */ 
+    public function setLieu($lieu)
+    {
+        $this->lieu = $lieu;
 
         return $this;
     }

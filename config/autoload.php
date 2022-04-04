@@ -16,8 +16,6 @@ class Autoload
         }
         elseif(file_exists(str_replace('\\','/',$class.'.php'))) {
             require_once str_replace('\\','/',$class.'.php');
-        }else {
-            die('Le fichier '.$class.' n\'existe pas');
         }
     }
 }
