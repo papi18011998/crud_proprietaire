@@ -1,3 +1,6 @@
+<a href="index" class="btn btn-danger">
+<i class="bi bi-arrow-left"></i> Retour
+</a>
 <div class="container">
 <form action='../Proprietaires/add' method="post">
     <!-- type de propritetaire -->

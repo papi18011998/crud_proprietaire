@@ -6,11 +6,11 @@ use src\model\ProprietaireDb;
 
 class ProprietairesController extends Controller
 {
-    public function index()
+    public  function  index()
     {
         $propriteaireDao = new ProprietaireDb();
         $proprietaires = $propriteaireDao->findAll();
-        $this->view->load('proprietaires/index', $proprietaires);
+        return $this->view->load('proprietaires/index', $proprietaires);
     }
     public function create()
     {
@@ -26,6 +26,7 @@ class ProprietairesController extends Controller
             $telephone = htmlspecialchars($_POST['telephone']);
             $type_proprietaire = $_POST['type_proprietaire'];
             $code_proprietaire = 'PROPRIO-'.rand(100, 999).time();
+            
             $proprietaireDao = new ProprietaireDb();
             $type_proprietaire_object = $proprietaireDao->findTypeProprietaire($type_proprietaire);
             require_once 'src/entities/Proprietaire.php';
@@ -38,7 +39,6 @@ class ProprietairesController extends Controller
             $proprietaireDao->add($proprietaire);
             $this->view->load('proprietaires/index',$proprietaireDao->findAll());
         }elseif ($_POST['type_proprietaire'] == '2') {
-            echo"tete";
             $type_proprietaire = $_POST['type_proprietaire'];
             $civilite = $_POST['civilite'];
             $prenom = htmlspecialchars($_POST['prenom']);
@@ -89,26 +89,34 @@ class ProprietairesController extends Controller
     }
     public function update()
     {
-        $erreur =[];
+        $proprietaireDao = new ProprietaireDb();
+        $proprietaire = $proprietaireDao->find($_POST['id']);
+        $code_proprietaire = $proprietaire->getCode_proprietaire();
+        require_once 'src/entities/Proprietaire.php';
         if ($_POST['type_proprietaire'] == '1') {
+
             $adresse = htmlspecialchars($_POST['adresse']);
             $nom = htmlspecialchars($_POST['nom']);
             $telephone = htmlspecialchars($_POST['telephone']);
             $type_proprietaire = $_POST['type_proprietaire'];
-            $code_proprietaire = 'PROPRIO-'.rand(100, 999).time();
-            $proprietaireDao = new ProprietaireDb();
+
             $type_proprietaire_object = $proprietaireDao->findTypeProprietaire($type_proprietaire);
-            require_once 'src/entities/Proprietaire.php';
-            $proprietaire = new Proprietaire();
+
             $proprietaire->setAdresse($adresse);
             $proprietaire->setNom($nom);
             $proprietaire->setTelephone($telephone);
             $proprietaire->setType_proprietaire($type_proprietaire_object);
             $proprietaire->setCode_proprietaire($code_proprietaire);
+            $proprietaire->setCivilite(null);
+            $proprietaire->setPrenom(null);
+            $proprietaire->setDateNaissance(null);
+            $proprietaire->setLieu(null);
+            $proprietaire->setCni(null);
             $proprietaireDao->update($proprietaire);
-            $this->view->load('proprietaires/index',$proprietaireDao->findAll());
-        }elseif ($_POST['type_proprietaire'] == '2') {
-            echo"tete";
+
+            return $this->index();
+        }
+        elseif ($_POST['type_proprietaire'] == '2') {
             $type_proprietaire = $_POST['type_proprietaire'];
             $civilite = $_POST['civilite'];
             $prenom = htmlspecialchars($_POST['prenom']);
@@ -117,14 +125,11 @@ class ProprietairesController extends Controller
             $lieu_naissance = htmlspecialchars($_POST['lieu_naissance']);
             $adresse = htmlspecialchars($_POST['adresse']);
             $telephone = htmlspecialchars($_POST['telephone']);
-            $code_proprietaire = 'PROPRIO-'.rand(100, 999).time();
             $cni = htmlspecialchars($_POST['cni']);
-
-            $proprietaireDao = new ProprietaireDb();
-            $type_proprietaire_object = $proprietaireDao->findTypeProprietaire($type_proprietaire);
             $nationalite = htmlspecialchars($_POST['nationalite']);
-            require_once 'src/entities/Proprietaire.php';
-            $proprietaire = new Proprietaire();
+
+            $type_proprietaire_object = $proprietaireDao->findTypeProprietaire($type_proprietaire);
+            
             $proprietaire->setCivilite($civilite);
             $proprietaire->setPrenom($prenom);
             $proprietaire->setNom($nom);
@@ -136,10 +141,14 @@ class ProprietairesController extends Controller
             $proprietaire->setCni($cni);
             $proprietaire->setType_proprietaire($type_proprietaire_object);
             $proprietaire->setCode_proprietaire($code_proprietaire);
+            var_dump($proprietaireDao->update($proprietaire));
+
             $proprietaireDao->update($proprietaire);
 
-            $this->view->load('proprietaires/index', $proprietaireDao->findAll());
+            return $this->index();
         }
+        
+        
     }
 }
 

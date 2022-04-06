@@ -1,6 +1,10 @@
+<a href="../index" class="btn btn-danger">
+<i class="bi bi-arrow-left"></i> Annuler la modification
+</a>
 <div class="container">
 <form action='../../Proprietaires/update' method="post">
     <!-- type de propritetaire -->
+    <input type="hidden" name="id" value="<?=$data[0]->getId()?>">
     <div class="row p-2">
         <select name="type_proprietaire" id="type_proprietaire" class="form-select form-select-lg mb-3">
             <?php

@@ -1,4 +1,7 @@
 <div>
+    <a href="Proprietaires/create" class="btn btn-primary">
+            Ajouter un proprietaire
+    </a>
     <h1>Liste des propriétaires</h1>
     <hr>
     <center> <h2>Liste des propriétaires particuliers</h2></center>
@@ -28,8 +31,8 @@
         <td><?=$value->getTelephone() ?></td>
         <?php echo $value->getDateNaissance(); ?>
         <td>
-            <a href="Proprietaires/edit/<?=$value->getId() ?>"><i class="bi bi-pen-fill text-success" title="Modifier"></i></a>
-            <a href="Proprietaires/delete/<?=$value->getId() ?>"><i class="bi bi-x-circle text-danger" title="Supprimer"></i></a>
+            <a href="http://127.0.0.1/crud_proprietaire/Proprietaires/edit/<?=$value->getId() ?>"><i class="bi bi-pen-fill text-success" title="Modifier"></i></a>
+            <a href="http://127.0.0.1/crud_proprietaire/Proprietaires/update/delete/<?=$value->getId() ?>"><i class="bi bi-x-circle text-danger" title="Supprimer"></i></a>
         </td>
       </tr>
     <?php }} ?>

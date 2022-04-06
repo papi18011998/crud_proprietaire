@@ -2,6 +2,7 @@
 namespace src\model;
 
 use libs\Model;
+use Proprietaire;
 
 class ProprietaireDb extends Model
 {
@@ -38,7 +39,7 @@ class ProprietaireDb extends Model
                     ->createQuery('SELECT p FROM Proprietaire p WHERE p.id = :id')
                     ->setParameter('id', $id)
                     ->getResult();
-        return $found[0];
+        return  $found[0];
     }
 
     public function add($proprietaire)
@@ -53,7 +54,6 @@ class ProprietaireDb extends Model
     }
     public function update($proprietaire)
     {
-        $this->entityManager->merge($proprietaire);
         $this->entityManager->flush();
     }
 }
